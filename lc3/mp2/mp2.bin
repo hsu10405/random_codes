@@ -1,0 +1,75 @@
+;Alexander Hsu
+;Netid: awhsu2
+;Section AD9
+;Spring 2012
+;
+;This is a program that compares a list of numbers and count the smallest
+;numbers. One register will be used to count the number while the other
+;register is used to store the number of times the value appeared in the list.
+;The concept was to add the current number with the 2's complement
+;of previous number. If the result is negative or then we keep the previous value
+;and increment the presence counter by 1.
+;If the result is positive, then we keep the current value and reset the 
+;presence counter
+
+;Register 1 is used to load the current input
+;Register 2 is for the 2's complement converter
+;Register 3 is for addition of the input and the inverted number.
+;Register 4 is used as a list counter for the 12 values
+;Register 5 is used for loading the next number from list
+;Register 6 is used to count the number of presence for the smallest value.
+;Register 7 is used to store the smallest number of the list.
+
+0011 0001 0000 0000 ; Program starts at this location x3100
+
+0101 001 001 1 00000 ;AND R1,R1,#0, Clear Register 1
+0101 010 010 1 00000 ;AND R2,R2,#0, Clear Register 2
+0101 011 011 1 00000 ;AND R3,R3,#0, Clear Register 3
+0101 100 100 1 00000 ;AND R4,R4,#0, Clear Register 4
+0101 101 101 1 00000 ;AND R5,R5,#0, Clear Register 5
+0101 110 110 1 00000 ;AND R6,R6,#0, Clear Register 6
+0101 111 111 1 00000 ;AND R7,R7,#0, Clear Register 7
+
+0001 100 100 1 01100 ;ADD R4,R4,#13, Add 12 to Register 4
+
+1010 101 0 0001 1100 ;LDI R5,START R5, Loads START which is pointed at x3132
+
+0001 111 101 1 00000 ;ADD R7,R5,#0, Add R5 to R7
+0001 110 110 1 00001 ;ADD R6,R6,#1, Include the first value to presence counter
+0001 100 100 1 11111 ;ADD R4,R4#-1, Subtract the list counter by 1
+
+0010 101 0 0001 1000 ;LD R5,START, Load The value at START to R5
+
+0101 011 011 1 00000 ;AND R3,R3,#0, Clear R3, INPUT starts here
+0001 101 101 1 00001 ;ADD R5,R5,#1, Add 1 to R5
+0110 001 101 000000  ;LDR R1,R5,#0, Used the value of R5 to load next number
+1001 010 111 111111  ;NOT R2,R7, Invert value in R7 and store it in R7
+0001 010 010 1 00001 ;ADD R2,R2,#1, 2's Complement
+0001 011 001 0 00 010 ;ADD R3,R1,R2, Add R1 and R2 and store in R3
+
+0000 100 0 0000 0100 ;BRn LESS, Branch to less
+0000 010 0 0000 1010 ;BRz EQUAL, Branch to Equal
+
+0001 100 100 1 11111 ;ADD R4,R4,#-1, Subtract the counter, GREAT starts here
+0000 001 1 1111 0110 ;BRp INPUT, Branch back for next input
+0000 010 0 0000 1011 ;BRz STORE, Branch to store data
+
+0101 111 111 1 00000 ;AND R7,R7,#0, Reset R7, LESS starts here
+0101 110 110 1 00000 ;AND R6,R6,#0, Reset R6
+0001 111 001 1 00000 ;ADD R7,R1,#0, Load the current into R7
+0001 110 110 1 00001 ;ADD R6,R6,#1, Increment R6 by 1
+0001 100 100 1 11111 ;ADD R4,R4,#-1 Decrement list counter by 1
+0000 001 1 1110 1111 ;BRp INPUT, Branch back for next input
+0000 010 0 0000 0100 ;BRz STORE, Branch to store data
+
+0001 110 110 1 00001 ;ADD R6,R6,#1, Increment R6 by 1
+0001 100 100 1 11111 ;ADD R4,R4,#-1 Decrement List counter by 1
+0000 001 1 1110 1011 ;BRp INPUT, Branch back for next input
+
+0111 110 101 000001 ; STR R7 R5 #1, Stores R6 to memory
+0111 111 101 000010 ; STR R6 R5 #2, Stores R7 to memory
+
+1111 0000 00100101 ;TRAP x25, END OF INSTRUCTION
+
+0011 0001 0011 0010 ;START, Pointer used to load the first data
+

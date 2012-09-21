@@ -1,0 +1,3 @@
+#!/bin/bash
+/class/ece190/bin/clang -g -std=c99 -Wall -Werror -o ShuffleMerge shuffle_merge.c main.c append.o
+

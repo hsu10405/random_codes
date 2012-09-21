@@ -1,0 +1,40 @@
+
+---Problem 1---
+basic_test: 6/6
+pos_neg_test: 4/4
+zero_test: 4/4
+negative_test: 4/4
+callee_save_test: 2/2
+Total: 20/20
+
+---Problem 2---
+basic_test: 10/10
+negative_input_test: 4/4
+zero_input_test: 4/4
+callee_save_test: 2/2
+Total: 20/20
+
+---Problem 3---
+Code does not compile.
+Total: 0/20
+
+---Problem 4---
+basic_test_1: 5/5
+basic_test_2: 5/5
+overflow_sum_test: 4/4
+extra_numbers_test: 4/4
+callee_save_test: 2/2
+Total: 20/20
+
+---Problem 5---
+base2_height4: 4/4
+base3_height4: 4/4
+base6_height5: 4/4
+base3_height3: 0/4
+base5_height1: 0/4
+base5_height7: 0/4
+base0_height0: 0/4
+callee_save: 2/2
+Total: 14/30
+
+Grand Total: 74/110

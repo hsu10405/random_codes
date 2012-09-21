@@ -1,0 +1,2 @@
+#!/bin/bash
+/class/ece190/bin/clang -g -std=c99 -o RegularExpression RegularExpression.c

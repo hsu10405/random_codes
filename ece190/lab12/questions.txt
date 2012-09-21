@@ -1,0 +1,80 @@
+Building complex types:
+Provide a C code to declare a variable "s" which is an array of 4 structures with members "int" and "double":
+>> 
+
+vector s_array[4];
+
+Custom type names:
+Declare the same variable "s" (an array of 4 structures with members "int" and "double"), this time using a custom type to identify the structure
+>> 
+
+typedef struct{
+   int a;
+   double b;
+} vector;
+
+vector s_array[4];
+
+Operators:
+What does the type of "a" change to when it's used in an expression?
+>> 
+
+a is a pointer to a pointer of array of 3 char.
+
+Operator []:
+What is the result of all four expressions? Why?
+>> 
+The first two expression *(array + 3) and array[3] and last two expression *(base_pointer + 3) and base_pointer[3] yields the same result
+since the compiler treats them all like pointer. Using array[3] is the same
+thing as doing the pointer arithemic of *(array + 3) and same thing with the
+last two expression. So the they will all point to 3 when we call them.
+
+Operator *:
+You have a variable with type "int" that you want to pass to a function, but the parameter has type "int *". How do you pass it?
+>> 
+In that case, you want to pass the address of the variable into the function
+because the function will create a pointer pointing to that variable.
+so for example:
+
+void SwapVar (int * a, int * b);
+
+void main(){
+
+int a = 5;
+int b = 3;
+
+SwapVar (&a, &b);
+
+}
+What if the parameter has type "int **"?
+>> 
+In that case you want to pass in the address of that pointer since the first
+dereferencing symbol will point to the address of the first pointer. The second
+symbol will point to the variable the first pointer is pointing to.
+Operator ->:
+Suppose you have a variable called "vector_array" which is an array of this "vector" type. Write a C expression to access the y component of element 4 of the array (element 0 is the first).
+>> 
+vector * pointer = vector_array; //this makes the pointer pointing to the first element in the array.
+pointer->vector_array[3].y; //points to the y component of element 3
+
+If we have a variable "cur_ball" which is a pointer to a "ball", how would we access the x velocity of the ball?
+>>
+ 
+ball * curball = &some_ball;
+curball->position.x
+
+What if we had an array of "ball" called "balls" and wanted to access the y position of ball 0?
+>> 
+ball * pointer = balls;
+balls->ball[0].position.y
+Operator &:
+Explain why "&array[3]" and "array + 3" are equivalent.
+>> 
+When we say array, we say the address of the first element of the array. So
+array + 3 is the same thing as &array[3]. This is how pointer arithmetic works
+operator sizeof:
+Another use of the sizeof operator is to compute the number of elements in an array: sizeof(array) / sizeof(array[0]).  Explain why this trick works.
+>> 
+sizeof(array) tells us the totall size of the array. sizeof(array[0]) tells us
+the size of that element. Since each element of the array is the same size. 
+We can perform the division to determine the number of elements in the array.

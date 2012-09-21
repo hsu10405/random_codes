@@ -1,0 +1,19 @@
+Problem 1 Answer
+================
+ 
+Part A) Fill in the truth table for the output F
+
+A  B  C  F
+----------
+0  0  0  0
+0  0  1  0
+0  1  0  1
+0  1  1  0
+1  0  0  0
+1  0  1  0
+1  1  0  1
+1  1  1  1
+
+Part B) Write the boolean expression for F
+
+F = (AB) + (B(NOT(C))

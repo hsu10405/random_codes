@@ -1,0 +1,53 @@
+Question 1: Describe the errors that occur when trying to assemble lab5_code.asm. Identify the cause of each error.
+
+14: illegal operands for missing opcode 
+At the x3000, there is no pesudopcode ".ORIG" to indicate the starting
+location of the code. The program doesn't know where to start.
+
+16: instruction appears before .ORIG
+Since the machine doens't know where to start, the program doesn't know where
+INPUT is.
+
+17: constant outside of allowed range
+LD only takes the offest of 2^8 to -2^8-1. x3010 is beyond the range LD
+allows.
+
+19: illegal operands for ADD
+There is an extra comma for the instruction which violate the format of the
+ADD instruction.
+
+30: constant outside of allowed range
+LD only takes the offest of 2^8 to -2^8-1. x300F is beyond the range LD
+allows.
+
+32: label OUTERLOOP has already appeared
+The branch condition statement at OUTERLOOP didn't follow the "NZP" format (it
+was written in PZ instead of ZP). So the computer outputed the error.
+
+35: constant outside of allowed range
+ST only takes the offest of 2^8 to -2^8-1. x3011 is beyond the range ST
+allows. 
+
+43: no .END directive found
+The program doesn't know where to end the assembly code, the machine will
+continue to compile the code.
+
+
+
+Question 2: For each label in the code, write down the corresponding memory location. 
+
+OUTERLOOP x3004
+INNERLOOP x3005
+INPUT x300E
+
+
+
+Question 3: Between using labels and explicit memory locations/offsets, which
+one makes the most sense, and why?
+
+Using labels can save a lot of times when dealing with pointers and branch
+conditions. Normally we will have to use PC and offests to specify where we
+want to execute our next instruction. However, when the program gets lengthy,
+it is difficult to count the PC and it is more likely to create bugs. With
+labels however, we create a location that is easier to remember (INNERLOOP is
+easier to remember compare to x3004). 

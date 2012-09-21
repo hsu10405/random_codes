@@ -1,0 +1,22 @@
+#!/bin/bash
+if [ "$1" == "ok" ]
+then /home/ece190/bin/hint2
+else echo "
+---------------------------------------------------------------------------
+WARNING: If you choose to view this hint, it will count as viewing the hint
+         for Problem 1 AND for Problem 2.  If you view the hint, your 
+         maximum possible score will be reduced for BOTH problems.
+         There is no penalty for viewing this message.
+---------------------------------------------------------------------------
+
+NOTE: The hint for Problem 1/Problem 2 provides the following information:
+       - the activation record format
+       - an example from Prof. Hu's lecture of an LC-3 subroutine using
+         the run-time stack
+       - a tip about how to implement C pointers in LC-3
+
+ If you are really sure you want to view the hint, type:
+
+   ./hint ok
+"
+fi

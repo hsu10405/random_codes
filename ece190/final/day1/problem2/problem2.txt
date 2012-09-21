@@ -1,0 +1,21 @@
+Problem 2 Answers
+=================
+
+Part A) Consider the 32-bit instruction as shown. What is the minimum number of
+bits required to represent the OPCODE?
+
+Minimum number of bits:
+10 bits, 2^10 = 1024, 2^9 = 512. 1024>640>512
+
+Part B) Consider the 32-bit instruction as shown. What is the maximum possible 
+number of registers? Show your work.
+Source 1, source 2, dest must share the same amount of bit.
+so 32 - 10 (opcodes ) = 22 bits left
+22 / 3 = 7 remain 1.
+so 2^7 = 128 registers 
+
+
+
+
+Maximum possible number of registers: 128 registers
+

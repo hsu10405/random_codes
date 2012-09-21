@@ -1,0 +1,1 @@
+clang -g -std=c99 -Wall -Werror -o mp4.2 -lc mp4.1.c mp4.2.c mp4.2_main.c

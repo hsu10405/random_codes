@@ -1,0 +1,9 @@
+base2_height4: 4/4
+base3_height4: 4/4
+base6_height5: 4/4
+base3_height3: 0/4
+base5_height1: 0/4
+base5_height7: 0/4
+base0_height0: 0/4
+callee_save: 2/2
+Total: 14/30

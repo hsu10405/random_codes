@@ -1,0 +1,4 @@
+createVertex: 7/7
+createNeighbor: 7/7
+deallocate: 6/6
+Total: 20/20

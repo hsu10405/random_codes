@@ -1,0 +1,8 @@
+// Symbol table
+// Scope level 0:
+//	Symbol Name       Page Address
+//	----------------  ------------
+//	STRCPY            3000
+//	WORK              300C
+//	DONE              3015
+

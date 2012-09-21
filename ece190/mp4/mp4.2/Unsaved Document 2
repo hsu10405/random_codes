@@ -1,0 +1,38 @@
+/*    
+    FILE *pFile = fopen(vEdge_Filename, "w");
+    fprintf(pFile, "P3\n"); //writes P3 to file
+    fprintf(pFile, "%d %d\n", x, y);
+    fprintf(pFile, "%d\n", max);
+    for (currentx = 0; currentx < x; currentx++){
+        for (currenty = 0; currenty < y; currenty++){
+            for(channel = 0; channel < 3; channel++){
+                if(channel == 2){
+                    fprintf(pFile,"%d\n", ver_image[currentx][currenty][channel]);
+                }
+                else{
+                    fprintf(pFile, "%d ", ver_image[currentx][currenty][channel]);
+                }
+            }
+        fprintf(pFile, "\n");
+        }
+    }
+    fclose(pFile); //close file}
+//
+    pFile = fopen(hEdge_Filename, "w");
+    fprintf(pFile, "P3\n"); //writes P3 to file
+    fprintf(pFile, "%d %d\n", x, y);
+    fprintf(pFile, "%d\n", max);
+    for (currentx = 0; currentx < x; currentx++){
+        for (currenty = 0; currenty < y; currenty++){
+            for(channel = 0; channel < 3; channel++){
+                if(channel == 2){
+                    fprintf(pFile,"%d\n", hor_image[currentx][currenty][channel]);
+                }
+                else{
+                    fprintf(pFile, "%d ", hor_image[currentx][currenty][channel]);
+                }
+            }
+        fprintf(pFile, "\n");
+        }
+    }
+*/

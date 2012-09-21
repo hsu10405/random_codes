@@ -1,0 +1,17 @@
+// Symbol table
+// Scope level 0:
+//	Symbol Name       Page Address
+//	----------------  ------------
+//	FUCT              3005
+//	MULT              300E
+//	LOAD              3013
+//	INPUT             301B
+//	COUNT             301C
+//	TEMPR0            301D
+//	TEMPR2            301E
+//	TEMPR3            301F
+//	TEMPR4            3020
+//	TEMPR5            3021
+//	TEMPR6            3022
+//	TEMPR7            3023
+

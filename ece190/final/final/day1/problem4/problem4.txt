@@ -1,0 +1,30 @@
+Problem Answers
+=================
+
+Part A) Write the C code below
+//R5 is a pointer
+int * register_0 = (register_5 + 3);
+int register_1 = *register_5;
+
+register_1 *= -1;
+register_1 += *register_0;
+*(register_5 + 2) = register_1;
+
+
+
+
+Part B) Write the C code below
+int register_0 = *register_5
+if (register_0 > 0){
+    register_0 += 10;
+}
+register_0 += 4;
+*(register_5 + 3) = register_0;
+
+
+Part C) Write the C code below
+int register_0 = *register_5;
+int register_1 = register_0 + 1;
+int register_2 = *(register_5 + 1);
+register_2 += register_1;
+*(register_5 + 2) = register_2;

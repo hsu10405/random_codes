@@ -1,0 +1,25 @@
+Testing MP4.1
+=============
+Included are a few test cases and a gold executable to check your code.
+mp4.1gold will produce the correct output image given the specified input image and filter.
+Your code must produce the exact same output image as mp4.1gold given the same input image and filter.
+
+To use the gold code or imgdiff executables, you must first change the permissions on them.
+To do so, use this command:
+  chmod 777 mp4.1gold imgdiff
+
+The syntax for the gold executable is:
+  ./mp4.1gold IMAGE_FILE [FILTER_FILE]
+Notes:
+  FILTER_FILE is optional, and if not specified will default to "filter.txt"
+  The resulting image will be stored in the filename specified in the provided main function ("output.ppm")
+
+To compare your results with the output of the gold executable, use the following command:
+  ./imgdiff GOLD_OUTPUT_IMG YOUR_OUTPUT_IMG
+imgdiff will read in the two images and compare the values in each array. If they are not completel equal, it will print an error message and return -1.
+You may use vimdiff to compare the files, but note that your file formatting will have to match that of the input file or vimdiff will not be as useful.
+imgdiff works regardless of file whitespace formatting.
+
+Your output needs to match ours exactly.
+These tests are not guaranteed to cover all possibilities.
+You should try to think of your own test cases in addition to these.

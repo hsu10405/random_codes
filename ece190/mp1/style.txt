@@ -1,0 +1,10 @@
+Auto-generated coding style grade for MP1
+
+ 2/2 - No windows newlines
+ 3/3 - No tabs
+ 2/2 - Lines limited to 120 characters
+ 3/3 - Opening and closing braces indented the same
+ 3/3 - Braces used for all logical blocks
+ 2/2 - 1 or 2 character variable names used sparingly
+
+15/15 - Total

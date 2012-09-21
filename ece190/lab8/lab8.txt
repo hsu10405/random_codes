@@ -1,0 +1,41 @@
+Problem #2 Activation Record:
+RUNTIME:        
+
+x_diff
+y_diff
+e_distance
+main's frame pointer
+return address for main
+return value:e_distance
+ax
+ay
+bx
+by
+main:x1_in 
+main:y1_in      
+main:x2_in      
+main:y2_in  
+
+At call
+Problem #3 Run-time Stack:
+-------------
+|factorial()|
+-------------
+fact_result
+factor
+fact_square's frame pointer
+return address for fact_square
+return value:fact_result
+passed value:fact_in
+-------------------------------
+---------------
+|fact_square()|
+---------------
+fact_square_result
+main's frame pointer
+return address for main
+return value:fact_square_result
+passed value:fact_square_in
+
+main:n_fact_squared
+main:n

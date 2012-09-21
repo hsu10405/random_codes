@@ -1,0 +1,118 @@
+Grade file for final exam problems 1, 2, 3, and 4
+----------------------------------------------
+Problem 1
+
+
+Problem 1 Answer
+================
+ 
+Part A) Fill in the truth table for the output F
+
+A  B  C  F
+----------
+0  0  0  0
+0  0  1  0
+0  1  0  1
+0  1  1  0
+1  0  0  0
+1  0  1  0
+1  1  0  1
+1  1  1  1
+
+Part B) Write the boolean expression for F
+
+F = (AB) + (B(NOT(C))
+
+Problem 1 Part A Grade: 8/8
+Problem 1 Part B Grade: 2/2
+----------------------------------------
+Problem 2
+
+
+Problem 2 Answers
+=================
+
+Part A) Consider the 32-bit instruction as shown. What is the minimum number of
+bits required to represent the OPCODE?
+
+Minimum number of bits:
+10 bits, 2^10 = 1024, 2^9 = 512. 1024>640>512
+
+Part B) Consider the 32-bit instruction as shown. What is the maximum possible 
+number of registers? Show your work.
+Source 1, source 2, dest must share the same amount of bit.
+so 32 - 10 (opcodes ) = 22 bits left
+22 / 3 = 7 remain 1.
+so 2^7 = 128 registers 
+
+
+
+
+Maximum possible number of registers: 128 registers
+
+
+Problem 2 Part A Grade: 5/5
+Problem 2 Part B Grade: 5/5
+-----------------------------------------
+Problem 3
+
+
+Problem 3 Answers
+=================
+
+Fill in the appropriate terms that would correctly fill in the blanks of the 
+problem statement:
+
+(A) = PC
+(B) = MDR
+(C) = MAR
+(D) = IR
+(E) = The memory address that needs to be interrogated in MAR
+(F) = Instructions that will be sent to IR for decoding the instruction.
+
+Problem 3 Part A Grade: 1/1
+Problem 3 Part B Grade: 0/1
+Problem 3 Part C Grade: 0/2
+Problem 3 Part D Grade: 0/1
+Problem 3 Part E Grade: 0/1
+Problem 3 Part 5 Grade: 2/2
+-------------------------------------
+Problem 4
+
+
+Problem Answers
+=================
+
+Part A) Write the C code below
+//R5 is a pointer
+int * register_0 = (register_5 + 3);
+int register_1 = *register_5;
+
+register_1 *= -1;
+register_1 += *register_0;
+*(register_5 + 2) = register_1;
+
+
+
+
+Part B) Write the C code below
+int register_0 = *register_5
+if (register_0 > 0){
+    register_0 += 10;
+}
+register_0 += 4;
+*(register_5 + 3) = register_0;
+
+
+Part C) Write the C code below
+int register_0 = *register_5;
+int register_1 = register_0 + 1;
+int register_2 = *(register_5 + 1);
+register_2 += register_1;
+*(register_5 + 2) = register_2;
+
+Problem 4 Part A Grade: 2/3
+Problem 4 Part B Grade: 3/3
+Problem 4 Part C Grade: 4/4
+-----------------------------------------
+

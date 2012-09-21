@@ -1,0 +1,118 @@
+   int filx, fily, currentx, currenty = 0;
+    int ver_filtersum= 0;
+    int hor_filtersum = 0;
+    int ver_weight = 0;
+    int hor_weight = 0;
+    
+    for (currentx = 0; currentx < 3; currentx++){
+        for (currenty = 0; currenty < 3; currenty++){
+            ver_weight += ver_filter[currentx][currenty];
+        }
+    }
+
+    int radius = 3 / 2;
+    
+    for (currentx = 0; currentx < x; currentx++){
+        for (currenty = 0; currenty < y; currenty++){
+            for (channel = 0; channel < 3; channel++){
+                
+                if ((currentx - radius) < 0 || (currenty - radius) < 0 || (currentx + radius + 1) > x || (currenty + radius + 1) > y){
+                    ver_image[currentx][currenty][channel] = image[currentx][currenty][channel];
+                }
+                else{
+                    for(filx = 0; filx < 3; filx++){
+                        for(fily = 0; fily < 3; fily++){
+                            
+                            ver_filtersum += ver_filter[filx][fily] * image[currentx - radius + filx][currenty - radius + fily][channel];
+                        }
+                    }
+                    
+                    if (ver_filtersum < 0){
+                        ver_filtersum = 0;
+                    }
+                    else if (ver_filtersum > max){
+                        ver_filtersum = max;
+                    }
+                    if (ver_weight > 0){
+                        ver_filtersum /= ver_weight;
+                    }
+                    
+                    ver_image[currentx][currenty][channel] = ver_filtersum;
+                }
+                ver_filtersum = 0; //reset ver_filtersum   
+                
+            }
+        }
+    }  
+
+    for (currentx = 0; currentx < 3; currentx++){
+        for (currenty = 0; currenty < 3; currenty++){
+            hor_weight += hor_filter[currentx][currenty];
+        }
+    }
+    
+    for (currentx = 0; currentx < x; currentx++){
+        for (currenty = 0; currenty < y; currenty++){
+            for (channel = 0; channel < 3; channel++){
+                
+                if ((currentx - radius) < 0 || (currenty - radius) < 0 || (currentx + radius + 1) > x || (currenty + radius + 1) > y){
+                    hor_image[currentx][currenty][channel] = image[currentx][currenty][channel];
+                }
+                else{
+                    for(filx = 0; filx < 3; filx++){
+                        for(fily = 0; fily < 3; fily++){
+                            
+                            hor_filtersum += hor_filter[filx][fily] * image[currentx - radius + filx][currenty - radius + fily][channel];
+                        }
+                    }
+                    
+                    if (hor_filtersum < 0){
+                        hor_filtersum = 0;
+                    }
+                    else if (hor_filtersum > max){
+                        hor_filtersum = max;
+                    }
+                    if (hor_weight > 0){
+                        hor_filtersum /= hor_weight;
+                    }
+                    
+                    hor_image[currentx][currenty][channel] = hor_filtersum;
+                }
+                hor_filtersum = 0; //reset hor_filtersum   
+                
+            }
+        }
+    }  
+
+    
+/*now the finding the square part*/
+    
+    for (currentx = 0; currentx < x; currentx++){
+		for (currenty = 0; currenty < y; currenty++){
+			for (channel = 0; channel < 3; channel++){
+                            if(ver_image[currentx][currenty][channel] != 0){
+                                hor_length++;
+                                while(ver_image[currentx + hor_length][currenty][channel] == 0){
+                                     hor_length++;
+                                }
+                            }
+                            if(hor_image[currentx][currenty][channel] != 0){
+                                ver_length++;
+                                while(hor_image[currentx][currenty + ver_length][channel] == 0){
+                                     ver_length++;
+                                }
+                            }
+                            if(hor_length == ver_length){
+                                *area = hor_length * ver_length;
+                                *center_x = currentx + (hor_length / 2);
+                                *center_y = currenty + (ver_length / 2);
+                                number_of_squares = 1;
+                            }
+                            else{
+                                ver_length = 0;
+                                hor_length = 0;
+                            }
+                    }
+                }
+            }
+        }

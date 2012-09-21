@@ -1,0 +1,27 @@
+Answer the following questions
+
+1)There is a major fault with the following code. It is more intuitive to answer it without assembling it.
+
+    .ORIG x3000
+    LEA R3, BINARY      
+    LD  R6, ASCII       ;character
+    LD  R7, COUNT       ;initialize count to 10
+REPEAT      TRAP x23    ;get character
+    ADD R0,R0,R6        ;convert to a number
+    STR R0,R3,#0        ;store number
+    ADD R3,R3,#1        ;pointer is incremented
+    ADD R7,R7,-1        ;counter is decremented
+    BRp REPEAT      ;carry on
+    BRnzp   NEXT
+ASCII       .FILL   xFFD0
+COUNT       .FILL   #10
+BINARY      .BLKW   #10
+
+    .END
+
+The program doesn't halt, there is no TRAP x25 to stop the machine. Also, the
+label NEXT is no defined in the code.
+
+2) Explain the difference between JSR and the JSRR instructions.
+JSR jumps to subroutine base on the PC and offset. JSRR takes the value of a
+register as an memory address and an offset and jump to that subroutine.

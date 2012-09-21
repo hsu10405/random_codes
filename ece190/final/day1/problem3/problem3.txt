@@ -1,0 +1,12 @@
+Problem 3 Answers
+=================
+
+Fill in the appropriate terms that would correctly fill in the blanks of the 
+problem statement:
+
+(A) = PC
+(B) = MDR
+(C) = MAR
+(D) = IR
+(E) = The memory address that needs to be interrogated in MAR
+(F) = Instructions that will be sent to IR for decoding the instruction.

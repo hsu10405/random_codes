@@ -1,0 +1,99 @@
+Write the names and netids of the people in your group, including the submitter.
+Group members:
+Alexander Hsu, awhsu2
+Kevin Han, kyhan2
+
+
+Problem statement: Given the three sides of a triangle, calculate its squared area.
+
+The squared area of a triangle given its sides x, y and z is defined as squared area = s*(s-x)*(s-y)*(s-z) where s = (x + y + z)/2
+
+
+1. List the input and output, and describe the behavior of the program.
+Input: Three sides of the triangle (x ,y ,z)
+Output: The area of the triangle squared (s^2)
+Behavior:Takes inputs into the main function, calculate, and display the
+output back to the text display.
+
+
+2. Write your initial pseudocode here:
+
+input x
+input y
+input z
+
+calculate the result base on the inputs
+
+output result
+
+
+
+
+
+
+
+
+
+3. Write your initial test cases here (one example is given).  Next to each test case, indicate if it passes or fails with your initial algorithm (unless you're an expert programmer, you should find flaws in your initial algorithm)
+    1. set of numbers that violate the geometry of the triangle (e.g. sum of 2
+    sides of triangle is always greater than the third), this can break our
+    algorithm. 
+        1. (1, 2, 3) fail
+        2. (2, 3, 4) pass
+        3. (3, 5, 9) fail
+        4. (3, 6, 9) fail
+    2. Sets of number that have negatives inputs WILL break our algorithm
+    3. Inproper input
+        1. (e, h, g) is not a valid set 
+        2. (h, t, t) is not a valid set
+
+
+
+
+4. Write your final pseudocode here:
+
+input x
+input y
+input z
+
+checks if the inputs are valid (they form a triangle or not)
+if valid
+    Use the inputs and calculate result    
+else
+    display error and loop back to input
+
+output result
+
+
+
+
+
+5. Write any additional test cases here.  All test cases should pass now.
+
+1. (1, 2, 3) return to inputs
+2. (3, 5, 9) return to inputs
+3. (2, 3, 4) pass
+4. (-1, 3, 5) return to inputs
+5. Character sets will return to input
+
+
+6. Write the all test cases when tested against your initial C program.
+    1.Character sets still breaks our program.
+      (a, b, e) Breaks program leave it in infinite loop
+    2. Invalid number sets returns program to input selection.
+     (1 , 1 ,3) return to input selection.
+
+
+
+
+7. Write the all test cases when tested against your final C program.
+    1.Number sets that violates triangle geometry will return to input
+      selection.
+     1.(1, 1 ,3) return to input selection)
+     2.(-1, -1, 3) return to input selection
+    2. Valid number sets returns proper results
+      1. (3, 4, 5) pass
+      2. (5, 6, 11) pass
+    3. Character sets returns in input selection 
+      1. (a, b, e) returns to input selection
+      2. (l, o, l) returns to input selection

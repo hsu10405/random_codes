@@ -1,0 +1,2 @@
+#!/bin/sh
+gcc -g -o graph -std=c99 graph.c main.c printList.o

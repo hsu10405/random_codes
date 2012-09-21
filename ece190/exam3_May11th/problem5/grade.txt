@@ -1,0 +1,12 @@
+test_no_symbols: 0/1
+test_dot1: 0/2
+test_brac1: 0/2
+test_or1: 0/2
+test_dot2: 0/2
+test_brac2: 0/2
+test_or2: 0/2
+test_comb1: 0/2
+test_comb2: 0/2
+test_comb3: 0/2
+test_nothing: 0/1
+Total: 0/20

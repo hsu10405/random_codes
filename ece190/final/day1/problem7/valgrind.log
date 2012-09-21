@@ -1,0 +1,26 @@
+==9760== Memcheck, a memory error detector
+==9760== Copyright (C) 2002-2010, and GNU GPL'd, by Julian Seward et al.
+==9760== Using Valgrind-3.6.0 and LibVEX; rerun with -h for copyright info
+==9760== Command: ./graph
+==9760== 
+==9760== Conditional jump or move depends on uninitialised value(s)
+==9760==    at 0x400C7C: main (in /class/ece190/grade/2012/spring/final/day1/awhsu2/day1/problem7/graph)
+==9760== 
+==9760== Conditional jump or move depends on uninitialised value(s)
+==9760==    at 0x400C89: main (in /class/ece190/grade/2012/spring/final/day1/awhsu2/day1/problem7/graph)
+==9760== 
+==9760== Conditional jump or move depends on uninitialised value(s)
+==9760==    at 0x400CD7: main (in /class/ece190/grade/2012/spring/final/day1/awhsu2/day1/problem7/graph)
+==9760== 
+createVertex: 7/7
+createNeighbor: 7/7
+==9760== 
+==9760== HEAP SUMMARY:
+==9760==     in use at exit: 0 bytes in 0 blocks
+==9760==   total heap usage: 16 allocs, 16 frees, 864 bytes allocated
+==9760== 
+==9760== All heap blocks were freed -- no leaks are possible
+==9760== 
+==9760== For counts of detected and suppressed errors, rerun with: -v
+==9760== Use --track-origins=yes to see where uninitialised values come from
+==9760== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 6 from 6)

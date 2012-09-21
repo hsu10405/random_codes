@@ -1,0 +1,8 @@
+ZeroExponent: 2/2
+PosBaseEven: 5/5
+PosBaseOdd: 5/5
+NegBaseEven: 2/2
+NegBaseOdd: 2/2
+LargerBase: 2/2
+LargerExponent: 2/2
+Total: 20/20

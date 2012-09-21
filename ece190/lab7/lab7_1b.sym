@@ -1,0 +1,19 @@
+// Symbol table
+// Scope level 0:
+//	Symbol Name       Page Address
+//	----------------  ------------
+//	FUCT              3005
+//	OUTMULT           300E
+//	INNMULT           300F
+//	LOAD              3016
+//	INPUT             301E
+//	COUNTINN          301F
+//	COUNTOUT          3020
+//	TEMPR0            3021
+//	TEMPR2            3022
+//	TEMPR3            3023
+//	TEMPR4            3024
+//	TEMPR5            3025
+//	TEMPR6            3026
+//	TEMPR7            3027
+

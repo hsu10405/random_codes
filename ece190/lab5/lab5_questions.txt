@@ -1,0 +1,18 @@
+QUESTION 1.  Read through the program lab5.bin.  What do you expect the program to do?  More specifically, which register will the program modify when it is run, and what will it contain when the program finishes?  (You can probably figure this out merely by reading the comments provided in lab5.bin.)
+
+ANSWER:
+The first line of code initiates the program at x3000. The AND opcode clears
+R2. The ADD opcode loads the value in R2, adds it with the specified
+decimal, and store final value into R2. At the end of the execution the value
+will be stored in register 2.
+
+QUESTION 2.  Explain in a few sentences why the ability to step through a program (run one instruction at a time) is a very useful tool for debugging a program.  Debugging is the process of finding and correcting bugs (or errors) in a program.  Hint: Finding a bug is often much more difficult than correcting it.
+
+ANSWER:
+Using steps allows us to see what the program does at each instruction. Then
+if there is something wrong with that specific instruction we can easily see
+it since the computer will behave oddly at that instruction. Without this
+ability, we cannot determine which instruction is faulty and we will have to
+examine all instructions every time which is inefficient.
+
+

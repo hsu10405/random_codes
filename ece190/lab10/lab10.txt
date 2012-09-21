@@ -1,0 +1,40 @@
+Lab 10
+
+1. For Problem 2 on the wiki, list the times each 
+of the test cases took.
+
+a. Search key = 2       Time taken: 1.50204e-05
+
+b. Search key = 9998    Time taken: 2.88486e-05
+
+c. Search key = 4877    Time taken: 1.28746e-05
+
+d. Search key = 12876   Time taken: 4.91142e-05
+
+2. For Problem 3 on the wiki, list the times each 
+of the test cases took.
+
+a. Search key = 2       Time taken: 9.53674e-07
+
+b. Search key = 9998    Time taken: 9.53674e-07
+
+c. Search key = 4877    Time taken: 9.53674e-07
+
+d. Search key = 12876   Time taken: 0
+
+3. For each of the above cases explain why you see 
+the difference in the timings.
+
+a. Search key = 2       
+
+b. Search key = 9998     
+
+c. Search key = 4877     
+
+d. Search key = 12876  
+
+In sequential search the list is always searched from the beginning of the
+list. so numbers at the end of the list takes more time to be found. In binary
+search however, the list is divided into two equal section since the list is
+sorted. Then the program only have to look at half of the whole list which
+uses fewer cycles for computation.

@@ -1,0 +1,10 @@
+Question 1: Give an example, different from the one given above, of "aspirational" testing. (Briefly describe the program or function, and give one or two examples of the test cases.)
+
+
+Question 2: Describe at least one "pessimistic" test case for the example program or function you chose in Question 1.
+
+
+Question 3: Your MP's have been graded by an autograder. Does the autograder perform black box testing or white box testing? Explain your answer.
+
+
+Question 4: The assert in the above code snippet is too strict. Assume the specification allows my_cos to be off by at most 0.01. How should the assert statement be modified to reflect this? (Hint: You may use the fabs() absolute value function.)

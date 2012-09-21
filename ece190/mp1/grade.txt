@@ -1,0 +1,11 @@
+x_0_large_r: 7/7
+x_0_small_r: 7/7
+x_neg_large_r: 7/7
+x_neg_small_r: 7/7
+x_pos_large_r: 7/7
+x_pos_small_r: 7/7
+x_almost1_r_1: 7/7
+x_almostneg1_r_1: 7/7
+x_almost1_r_small: 7/7
+x_almostneg1_r_small: 7/7
+Total: 70/70

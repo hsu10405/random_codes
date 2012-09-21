@@ -1,0 +1,16 @@
+// Symbol table
+// Scope level 0:
+//	Symbol Name       Page Address
+//	----------------  ------------
+//	AREA              4000
+//	SAVE              4000
+//	TOP_LOOP          4007
+//	DIVIDE            400B
+//	LOAD              4010
+//	TEMP0             4017
+//	TEMP1             4018
+//	TEMP2             4019
+//	TEMP3             401A
+//	TEMP4             401B
+//	TEMP5             401C
+

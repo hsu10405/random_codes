@@ -1,0 +1,20 @@
+Question 1: Give an example, different from the one given above, of "aspirational" testing. (Briefly describe the program or function, and give one or two examples of the test cases.)
+
+Example: Calculate the area of square
+
+test_case 1: positive length 3, answer should be 9
+test_case 2: positive length 5, answer should be 25
+
+Question 2: Describe at least one "pessimistic" test case for the example program or function you chose in Question 1.
+
+One pessimistic test case would be a negative length of, for instance, -2. The
+program should output "ERROR" because the input makes no sense.
+
+Question 3: Your MP's have been graded by an autograder. Does the autograder perform black box testing or white box testing? Explain your answer.
+The autograder perform black box testing because the grader only gives inputs
+to the program and compare the result to the expected answer. It is only
+concerned with what program should and should not do.
+
+Question 4: The assert in the above code snippet is too strict. Assume the specification allows my_cos to be off by at most 0.01. How should the assert statement be modified to reflect this? (Hint: You may use the fabs() absolute value function.)
+
+assert(y > fabs(0.01));

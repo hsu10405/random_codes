@@ -1,0 +1,25 @@
+This is the text file for answering the questions regarding Lab 2. 
+
+Q1) In one sentence each, in your own words, describe what each phase of the building and execution process does:
+Preprocess: The process will execute any lines that starts with "#" (i.e. #define, #include) and it's processed before my program (in this case "main()") is compiled.
+Compile: The program then checks the code and translate it into something the assembler understands.
+Assemble: The assembler then takes the code and translate it into machine language.
+Link: Using functions from other libraries to help execute the program better.
+Load: The program then loads the process into memory.
+Execute: The computer runs the program and an output is produced.
+
+Q2) What errors did you have to correct in the code?
+Ans2)
+The are some missing brackets inside the code and I just fill in the missing brackets. Also there are missing preprocessor derivatives in the code (#include <stdio.h>, #include <math.h>)
+
+
+Q3) What compiler phase(s) were involved in the errors?
+Ans3)
+
+The errors occured in the compiling phase. The compiler didn't know what "sqrt" is since it's not defined. Also, the missing brackets make the if and else statement incomplete. So the compilers returned with errors 
+
+Q4) What libraries did you need to link lab2.o with at the linking phase?
+Ans4)
+we need to link the program with the standard c library and the math library.
+
+

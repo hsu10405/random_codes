@@ -1,0 +1,26 @@
+Testing MP4.2
+=============
+Included are a few test cases and a gold executable to check your code.
+mp4.1gold will produce the correct output image given the specified input image.
+Your code must produce the same output image as mp4.1gold given the same input image (your results may differ within a specified range).
+
+To use the gold code or imgdiff executables, you must first change the permissions on them.
+To do so, use this command:
+  chmod 700 mp4.2gold imgdiff
+
+The syntax for the gold executable is:
+  ./mp4.2gold IMAGE_FILE
+Notes:
+  The horizonal edge filtered image output will be named "h_edge.ppm"
+  The vertical edge filtered image output will be named "v_edge.ppm"
+  The size and center of the square will be displayed to the console by our main function.
+
+To compare your filter results with the gold code results, use the following command:
+  ./imgdiff GOLD_FILTER_IMG OUTPUT_FILTER_IMG
+imgdiff will read in the two images and compare the values in each array. If they are not completely equal, it will print an error message and return -1.
+You may use vimdiff to compare the files, but note that your file formatting will have to match that of the input file or vimdiff will not be as useful.
+imgdiff works regardless of file whitespace formatting.
+
+Your output needs to match ours within the ranges specified on the MP4 wiki.
+The provided tests are not guaranteed to cover all possibilities. 
+You should think of your own test cases in addition to these.

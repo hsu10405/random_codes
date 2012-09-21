@@ -1,0 +1,13 @@
+// Symbol table
+// Scope level 0:
+//	Symbol Name       Page Address
+//	----------------  ------------
+//	REMAINDER         4300
+//	INIT              4304
+//	LOOP              430C
+//	RETF              4318
+//	TEMPPC            431E
+//	TEMP0             431F
+//	TEMP1             4320
+//	TEMP2             4321
+

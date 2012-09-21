@@ -1,0 +1,8 @@
+code_assembles: 2/2
+pop_and_push: 3/3
+pop_and_push_randomized_registers: 1/1
+pop_and_push_callee_save: 1/1
+r5_status_for_success: 1/1
+r5_status_for_underflow: 1/1
+r5_status_for_overflow: 1/1
+Total: 10/10

@@ -1,0 +1,2 @@
+#!/bin/bash
+/class/ece190/bin/clang -g -std=c99 -o rotate_90 rotate_90.c

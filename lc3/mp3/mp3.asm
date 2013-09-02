@@ -20,19 +20,30 @@ PRINTNUM .FILL x3001
 ; Polish Notation expression.  The signed 2's complement number will be
 ; stored in R1.
 HANDLE_NUM
-        ; put your code for the HANDLE_NUM subroutine here
+
         ; When a number is entered to the calculator, the number is pushed into the stack
         ; So for each number we receive, we push it into the stack
+        ST R7, TEMPPCNUM
         ADD R0, R1, #0 ;Copies R1 to R0
-        JSR PUSH ;Jumps to PUSH subroutine 
+        JSR PUSH       ;Jumps to PUSH subroutine 
+        ADD R5, R5, #0 ;check overflow
+        BRp OVERF ;Display overflow if R5 = 1
+        LD R7, TEMPPCNUM
         RET
+
+OVERF   LEA R0, ERR4     ;Load OVERFLOW
+        PUTS             ;Display string
+        LD R6, RESET ;load reset
+        JMP R6 ;reset the calculator
+        
     
-    
+ERR4    .STRINGZ "ERR4: Stack overflow.\n"
+TEMPPCNUM .FILL x0000    
 ; HANDLE_OP will be called when an operator is encountered in the Reverse
 ; Polish Notation expression.  Stored in R1 will be a number which identifies
 ; which operator was encountered.  0 means +; 1 means -; 2 means *; 3 means /.
 HANDLE_OP
-        ; put your code for the HANDLE_OP subroutine here
+        
         ; Operation requires the stack to pop the data out
         ; Then we need to jump to operation
         ; Let R3 be temp sum
@@ -40,10 +51,10 @@ HANDLE_OP
         ; R0 is result
         ; R5 needs to be check to prevent weird breakdown
 
+        ST R7, TEMPPCOP
         ST R3, HAND_TEMP1
         ST R2, HAND_TEMP2
         ST R0, HAND_TEMP3
-        
         ADD R3, R1, #-3
         BRz DIVIDE
         ADD R3, R1, #-2
@@ -56,12 +67,12 @@ HANDLE_OP
         RET
 
 DIVIDE  JSR DIV
-        JSR PUSH       ;incorporate this into divide subroutine
+        LD R7, TEMPPCOP
         
         RET
 
 MULTI   JSR MULT 
-        
+        LD R7, TEMPPCOP
         RET
 
 ADDI    JSR POP
@@ -73,14 +84,13 @@ ADDI    JSR POP
         BRp RESTART    ;RESET if R5=1
         ADD R0, R0, R2 ;Combine with first operand
         JSR PUSH       ;Put back to stack
-        ADD R5, R5, #0 ;Check R5
-        BRp RESTART ;RESET if R5=1
-        
+        LD R7, TEMPPCOP
         RET
 
 SUBT    JSR POP        ;First number will be inverted
         ADD R5, R5, #0 ;Check R5
         BRp RESTART    ;RESET if R5=1
+        ADD R2, R0, #0
         NOT R2, R2
         ADD R2, R2, #1 ;2's complement
         JSR POP        ;Load the other number
@@ -88,30 +98,54 @@ SUBT    JSR POP        ;First number will be inverted
         BRp RESTART    ;RESET if R5=1
         ADD R0, R2, R0 ;Subtraction
         JSR PUSH
-        ADD R5, R5, #0 ;Check R5
-        BRp RESTART ;RESET if R5=1
-        
+        LD R7, TEMPPCOP
         RET
 
-RESTART LEA R0, ERR2 ;load error
+RESTART LEA R0, ERR1   ;load error "undrerflow"
         PUTS
-        LD R6, RESET ;loads reset
-        JMP R6 ;reset the calculator
+        LD R6, RESET   ;loads reset
+        JMP R6 ;       reset the calculator
 
 HAND_TEMP1 .FILL x0000 ;Holds R3
 HAND_TEMP2 .FILL x0000 ;Holds R2
 HAND_TEMP3 .FILL x0000 ;Holds R0
+TEMPPCOP .FILL x0000
 ; HANDLE_END will be called when the end of the Reverse Polish Notation
 ; expression is encountered.        
 HANDLE_END
         ; put your code for the HANDLE_END subroutine here
         ; Assume the last operation pushed the last value into the stack so no need to check for stack
-        JSR POP ;loads the last value out and load into R0
-        LD R6, PRINTNUM
-        JSRR R6 ;output R0
-        RET
+        ; need to check the stack pointer pointing to the memory below the stack (that way we know that we have pop all data)
+        ; if there still data inside, then we have incomplete expression since not all number was used
+        
+        ST R7, TEMPPC
+        JSR POP            ;loads the last value out and load into R0
+        ADD R3, R0, #0     ;back up R0
+        LD R6, POINTER     ;Load value of pointer (which should be 0 by now) to R6
+        LEA R5, POINTER    ;Load address of POINTER to R5
+        NOT R5, R5         ;Invert R5
+        ADD R5, R5, #1     ;2's complement
+        ADD R5, R6, R5     ;Check for empty stack
+        BRnp INCOMP        ;Branch to incomplete if the sum is not zero
+        LEA R0, ANSWER     ;load the string
+        PUTS
+        ADD R0, R3, #0     ;restore R0
+        LD R6, PRINTNUM    ;load PRINTNUM
+        JSRR R6            ;output R0
+        LEA R0, SPACE
+        PUTS
+        LD R6, RESET       ;load reset
+        JMP R6             ;reset the calculator
 
-
+INCOMP  LEA R0, ERR2       ;load string error "incomplete expression"
+        PUTS
+        LEA R5, POINTER    ;loads the memory location of POINTER
+        STR R5, R5, #0     ;store memory location of POINTER into POINTER
+        LD R6, RESET       ;load reset
+        JMP R6             ;reset the calculator
+        
+ANSWER .STRINGZ "Answer : "
+SPACE  .STRINGZ " \n"
 ; multiply R1*R2 and put the result in R0.
 MULT
         ; put your code for the MULT subroutine here
@@ -121,50 +155,52 @@ MULT
         ;Answer will be loaded to R0 and pushed to stack
         ;no need to check overflow since the stack decreases.
 
-        ST  R7, TEMPPC ;store PC
-        AND R6, R6, #0 ; default answer if one of the value is 0
-        JSR POP ;load the first value out from stack
-        ADD R5, R5, #0 ;Check R5
-        BRp RESTART    ;RESET if R5=1
-        ADD R1 R0, #0  ;load first value
-        BRz ZERO ;to zero if the value is 0.
-        BRn INVERTX ;invert if it's negative
-RETURNX JSR POP ;load second value
-        ADD R5, R5, #0 ;Check R5
-        BRp RESTART    ;RESET if R5=1
-        ADD R2, R0, #0 ;load second value
-        BRz ZERO ;to zero if value is 0.
-        BRn INVERTY ;invert if it's negative
-
-MULT    ADD R1, R1, R1 ;R1 get multiplied once
-        ADD R2, R2, #-1 ;Counter subtract counter
-        BRp MULT ;Keep looping until counter is 0
-        ADD R6, R6, #0 ;check sign flag
-        BRnp INVANS ;flip answer if the sign flag is positive or negative 
-LOAD    ADD R0, R1, #0 ;load answer to R0
-        JSR PUSH ;Push output to stack
-        LD R7, TEMPPC ;loads PC back
+        ST  R7, TEMPPCMULT    ;store PC
+        AND R6, R6, #0        ; default answer if one of the value is 0
+        JSR POP               ;load the first value out from stack
+        ADD R5, R5, #0        ;Check R5
+        BRp RESTART           ;RESET if R5=1
+        ADD R1, R0, #0        ;load first value
+        BRz ZERO              ;to zero if the value is 0.
+RETURNM BRn INVERTX           ;invert if it's negative
+        JSR POP               ;load second value
+        ADD R5, R5, #0        ;Check R5
+        BRp RESTART           ;RESET if R5=1
+        ADD R2, R0, #0        ;load second value
+        BRz ZERO              ;to zero if value is 0.
+        BRn INVERTY           ;invert if it's negative
+        AND R3, R3, #0
+MULTIN  ADD R3, R2, R3        ;R1 get multiplied once
+        ADD R1, R1, #-1       ;Counter subtract counter
+        BRp MULTIN            ;Keep looping until counter is 0
+        ADD R6, R6, #0        ;check sign flag
+        BRnp INVANS           ;flip answer if the sign flag is positive or negative 
+LOAD    ADD R0, R3, #0        ;load answer to R0
+        JSR PUSH              ;Push output to stack
+        LD R7, TEMPPCMULT     ;loads PC back
 
         RET
 
-INVERTX ADD R1, R1, #-1 ;Converts from negative to positive
-        NOT R1, R1 ;Reverse 2's complement
-        ADD R6, R6, #-1 ;setup sign flag for first value
-        BRnzp RETURNX
+INVERTX ADD R1, R1, #-1       ;Converts from negative to positive
+        NOT R1, R1            ;Reverse 2's complement
+        ADD R6, R6, #-1       ;setup sign flag for first value
+        BRnzp RETURNM
 
-INVERTY ADD R2, R2, #-1 ;converts from negative to positive
-        NOT R2, R2 ;reverse 2's complement
-        ADD R6, R6, #1 ;setup sign flag for second value
-        BRnzp MULT ;jumps to mult since the first number is inverted.
+INVERTY ADD R2, R2, #-1       ;converts from negative to positive
+        NOT R2, R2            ;reverse 2's complement
+        ADD R6, R6, #1        ;setup sign flag for second value
+        BRnzp MULTIN          ;jumps to multin since the first number is inverted.
 
-ZERO    ADD R0, R6, #0 ;load zero to R0
-        JSR PUSH ;push back to stack
-        LD R7, TEMPPC ;loads PC back
+ZERO    ADD R0, R6, #0        ;load zero to R0
+        JSR PUSH              ;push back to stack
+        LD R7, TEMPPCMULT     ;loads PC back
         RET
 
-INVANS  NOT R1, R1 ;invert number
-        ADD R1, R1, #1 ;2's complement
-        BRn LOAD ;branch back to loading
+INVANS  NOT R3, R3            ;invert number
+        ADD R3, R3, #1        ;2's complement
+        BRn LOAD              ;branch back to LOAD
+
+TEMPPCMULT .FILL x0000
 
 ; divide R1/R2 and put the result in R0.  on success, set R5 to 0. on fail, set R5
 ; to 1.
@@ -172,10 +208,77 @@ DIV
         ; put your code for the DIV subroutine here
         ; the process is similar to multiplication
         ; but instead of adding we subtract and the final output
-        ; is the counter (this is a proto logic)
+        ; from the counter (this is a proto logic)
+        ; Second value is divided by the first value
+        ; R3 is temp storage
+        ; R6 is sign flag
+        ST R7, TEMPPCDIV ;Backup PC
+        ST R1, DIVTEMP1 ;backup value R1
+        ST R2, DIVTEMP2 ;backup value R2
+        ST R3, DIVTEMP3 ;backup value R3
+
+        JSR POP ;load first value
+        ADD R5, R5, #0     ;Check R5
+        BRp RESTART        ;RESET if R5=1
+        ADD R0, R0, #0     ;check if divisor is 0 (divide by 0 error)
+        BRz DIVZ
+        AND R6, R6, #0
+        ADD R6, R6, #-1    ;setup flag by default 
+        ADD R1, R0, #0     ;load value to R1
+RETURNY BRp INVDIVY        ;Branch to invert number (from positive to negative since we are stubracting it)
+        JSR POP            ;load second value
+        ADD R5, R5, #0     ;Check R5
+        BRp RESTART        ;RESET if R5=1
+        ADD R2, R0, #0     ;load value to R2
+        BRz ZERODIV ;      if dividend is 0, output 0 to monitor
+RETURNX BRn INVDIVX        ;branch to invert number (from negative to positive)
+        AND R3, R3, #0     ;clear counter
+DIVLOOP ADD R2, R1, R2     ;subtraction
+        BRn ENDLOOP
+        ADD R3, R3, #1     ;increment counter
+        BRp DIVLOOP
         RET
 
-                
+DIVTEMP1 .FILL x0000 ;backup R1
+DIVTEMP2 .Fill x0000 ;backup R2
+DIVTEMP3 .FILL x0000 ;backup R3
+
+INVDIVY NOT R1, R1     ;invert
+        ADD R1, R1, #1 ;2's complement
+        ADD R6, R6, #1 ;Clear sign flag
+        BRnzp RETURNY
+
+INVDIVX ADD R2, R2, #-1 ;subract 1
+        NOT R2, R2      ;undo 2's complement
+        ADD R6, R6, #1  ;set up flag
+        BRnzp RETURNX
+
+DIVZ    LEA R0, ERR3    ;load divide by 0 error
+        PUTS
+        LD R6, RESET    ;reset calculator
+        JMP R6
+
+ZERODIV AND R0, R0, #0
+        JSR PUSH
+        LD R7, TEMPPCDIV
+        RET
+        
+ENDLOOP ADD R6, R6, #0   ;check sign flag
+        Brnp INVQUO      ;flip the answer if the sign flag is on
+RETANS  ADD R0, R3, #0   ;load output to R0
+        JSR PUSH         ;push data back to stack
+        LD R1, DIVTEMP1  ;restore R1, R2 values. Not sure if necessary
+        LD R2, DIVTEMP2
+        LD R3, DIVTEMP3
+        LD R7, TEMPPCDIV ;restore PC
+        RET   
+
+INVQUO  NOT R3, R3
+        ADD R3, R3, #1   ;2's complement
+        BRnzp RETANS     ;jump back to end loop
+
+TEMPPCDIV .FILL x0000 
+    
 ; push contents of R0 onto the stack.  on success, set R5 to 0. on fail, set R5 to 1.
 PUSH    
         ; put your code for the PUSH subroutine here
@@ -200,8 +303,6 @@ PUSH
         RET
 
 OVER    ADD R5,R5,#1     ;Setup FAIL flag
-        LEA R0, ERR4     ;Load OVERFLOW
-        PUTS             ;Display string
         LD R6, TEMP1     ;Restore R6
         LD R7, TEMPPC    ;restore PC
         RET
@@ -233,8 +334,6 @@ POP
         LD R7, TEMPPC    ;Restore PC
         RET
 UNDER   ADD R5, R5, #1   ;Setup FAIL flag
-        LEA R0, ERR1     ;Load UNDERFLOW string
-        PUTS             ;Display UNDERFLOW
         LD R6, TEMP2     ;Restore R6
         LD R7, TEMPPC    ;Restore PC
         RET
@@ -247,7 +346,6 @@ TEMP2   .FILL x0000      ;Temp for R6
 ERR1    .STRINGZ "ERR1: Stack underflow.\n"
 ERR2    .STRINGZ "ERR2: Incomplete expression.\n"
 ERR3    .STRINGZ "ERR3: Division by zero.\n"
-ERR4    .STRINGZ "ERR4: Stack overflow.\n"
 
 
 

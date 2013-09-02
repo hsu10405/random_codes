@@ -1,0 +1,92 @@
+!SESSION 2013-01-25 00:45:00.038 -----------------------------------------------
+eclipse.buildId=v21.0.1-543035
+java.version=1.6.0_37
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product com.android.ide.eclipse.adt.package.product -keyring /Users/alexander/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product com.android.ide.eclipse.adt.package.product -keyring /Users/alexander/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2013-01-25 00:45:51.395
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.android.ide.eclipse.ddms 4 0 2013-01-25 00:45:51.624
+!MESSAGE DDMS files not found: /Applications/Android Development/eclipse/Eclipse.app/Contents/MacOS/platform-tools/adb /Applications/Android Development/eclipse/Eclipse.app/Contents/MacOS/tools/hprof-conv /Applications/Android Development/eclipse/Eclipse.app/Contents/MacOS/tools/traceview 
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-01-25 00:47:39.101
+!MESSAGE Failed to load properties file for project 'FirstProject'
+!SESSION 2013-01-25 00:50:02.540 -----------------------------------------------
+eclipse.buildId=v21.0.1-543035
+java.version=1.6.0_37
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product com.android.ide.eclipse.adt.package.product -keyring /Users/alexander/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product com.android.ide.eclipse.adt.package.product -keyring /Users/alexander/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2013-01-25 00:50:08.473
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-01-25 00:53:00.696
+!MESSAGE Failed to load properties file for project 'MyFirstApp'
+
+!ENTRY org.eclipse.core.resources 2 2 2013-01-25 00:53:01.529
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2013-01-25 00:53:01.529
+!MESSAGE The project description file (.project) for 'FirstProject' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SESSION 2013-04-26 21:14:48.517 -----------------------------------------------
+eclipse.buildId=v21.0.1-543035
+java.version=1.6.0_45
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product com.android.ide.eclipse.adt.package.product -keyring /Users/alexander/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product com.android.ide.eclipse.adt.package.product -keyring /Users/alexander/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.resources 2 10035 2013-04-26 21:14:55.684
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-26 21:14:57.431
+!MESSAGE projectOpenedWithWorkspace: failed to find manifest package for project FirstProject
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-26 21:14:57.883
+!MESSAGE Failed to finish PrecompilerBuilder#startupOnInitialize()
+!STACK 0
+java.lang.IllegalArgumentException: Path must include project and resource name: /FirstProject
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.resources.Workspace.newResource(Workspace.java:2163)
+	at org.eclipse.core.internal.resources.Container.getFolder(Container.java:222)
+	at com.android.ide.eclipse.adt.internal.build.SourceProcessor.buildSourceFileList(SourceProcessor.java:350)
+	at com.android.ide.eclipse.adt.internal.build.SourceProcessor.<init>(SourceProcessor.java:97)
+	at com.android.ide.eclipse.adt.internal.build.SourceProcessor.<init>(SourceProcessor.java:113)
+	at com.android.ide.eclipse.adt.internal.build.AidlProcessor.<init>(AidlProcessor.java:85)
+	at com.android.ide.eclipse.adt.internal.build.builders.PreCompilerBuilder.startupOnInitialize(PreCompilerBuilder.java:800)
+	at org.eclipse.core.internal.events.BuildManager.getBuilder(BuildManager.java:542)
+	at org.eclipse.core.internal.events.BuildManager.getBuilder(BuildManager.java:567)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:237)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:292)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:295)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:351)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:374)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-26 21:14:57.895
+!MESSAGE Failed to load properties file for project 'FirstProject'
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-26 21:14:58.733
+!MESSAGE Failed to load properties file for project 'FirstProject'
+
+!ENTRY org.eclipse.core.net 1 0 2013-04-26 21:15:05.538
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-26 21:15:07.867
+!MESSAGE Failed to load properties file for project 'FirstProject'
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-26 21:15:08.686
+!MESSAGE Failed to load properties file for project 'FirstProject'
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-26 21:15:08.686
+!MESSAGE Failed to load properties file for project 'FirstProject'
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-26 21:21:22.692
+!MESSAGE Failed to load properties file for project 'SimpleInterface'

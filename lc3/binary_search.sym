@@ -1,0 +1,9 @@
+// Symbol table
+// Scope level 0:
+//	Symbol Name       Page Address
+//	----------------  ------------
+//	TOP_OF_LOOP       6004
+//	LEFT              6010
+//	RIGHT             6014
+//	NOT_FOUND         6018
+//	DONE              601B
